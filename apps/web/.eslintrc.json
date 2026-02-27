@@ -1,0 +1,3 @@
+{
+  "extends": ["@retispec/eslint-config/next"]
+}

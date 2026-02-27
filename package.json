@@ -1,0 +1,16 @@
+{
+  "name": "retispec-website",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "packageManager": "bun@1.3.9",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "turbo": "^2.8.10"
+  }
+}

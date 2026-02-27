@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.turbo/
+.git/
+.env
+.env.local
+.env.*.local
+*.md
+.vscode/
+.idea/
+.DS_Store
+apps/cms/.tmp/
+apps/cms/.cache/
+apps/cms/dist/
