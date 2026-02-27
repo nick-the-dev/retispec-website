@@ -10,6 +10,7 @@ import {
   ArrowRight,
   ChevronRight,
 } from "lucide-react";
+import { VideoPlayer } from "@/components/video-player";
 import {
   getPageContent,
   getTestimonials,
@@ -332,6 +333,36 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Video Section */}
+      <section className="py-20 md:py-28 bg-[#0A1628] relative overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/[0.06] blur-[120px]" />
+        <div className="absolute -right-32 -bottom-32 h-[400px] w-[400px] rounded-full bg-[#0369A1]/[0.06] blur-[120px]" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-[#0EA5E9] mb-4" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              See It in Action
+            </p>
+            <h2
+              className="text-white mb-4"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.02em" }}
+            >
+              A case study in community-based settings
+            </h2>
+            <p className="text-[#7C8DA5] max-w-2xl mx-auto" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+              Watch how RetiSpec&apos;s AI-driven eye test enables early detection of Alzheimer&apos;s disease through a simple, non-invasive retinal scan.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <VideoPlayer
+              vimeoId="860969475"
+              thumbnailUrl="https://i.vimeocdn.com/video/1719328219-a414f1c345477d2f1dfd7cd56a5e8e3d882408268e682018fdfe2e4d7f37e429-d_1920x1080"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Image Band with Stats */}
       <section className="relative">

@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.squarespace-cdn.com" },
       { protocol: "https", hostname: "thelogic.co" },
       { protocol: "https", hostname: "cdn.mjbizwire.com" },
+      { protocol: "https", hostname: "i.vimeocdn.com" },
       { protocol: "http", hostname: "retispec-cms.49.12.207.132.sslip.io" },
     ],
   },
