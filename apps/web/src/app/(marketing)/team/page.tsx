@@ -68,7 +68,7 @@ export default async function TeamPage() {
                         alt={member.name}
                         width={170}
                         height={227}
-                        className="h-full w-full object-contain object-bottom"
+                        className="h-full w-full object-cover object-top"
                       />
                     ) : (
                       <div
