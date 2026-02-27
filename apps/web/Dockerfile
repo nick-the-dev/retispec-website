@@ -1,9 +1,11 @@
 FROM oven/bun:1.3.10-alpine AS deps
 WORKDIR /app
 
-# Copy workspace root files
+# Copy workspace root files and ALL workspace package.json files
+# (bun.lock was generated with all workspaces, so they must all be present)
 COPY package.json bun.lock ./
 COPY apps/web/package.json ./apps/web/package.json
+COPY apps/cms/package.json ./apps/cms/package.json
 COPY packages/typescript-config/package.json ./packages/typescript-config/package.json
 COPY packages/eslint-config/package.json ./packages/eslint-config/package.json
 
