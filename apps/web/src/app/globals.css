@@ -18,8 +18,8 @@
   /* Text */
   --color-heading: #0A1628;
   --color-body: #4A5B73;
-  --color-muted: #7C8DA5;
-  --color-light: #94A3B8;
+  --color-muted: #94A3B8;
+  --color-light: #7C8DA5;
 
   /* Borders & BG */
   --color-border: #E8EDF2;
@@ -31,5 +31,11 @@
 
   /* Base */
   --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
+  --color-foreground: #0A1628;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
 }

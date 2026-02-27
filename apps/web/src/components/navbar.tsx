@@ -4,127 +4,125 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/solution", label: "Solution" },
-  { href: "/news", label: "News" },
-  { href: "/team", label: "Team" },
-  { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
+const LOGO_DARK = "https://static.wixstatic.com/media/efca5f_c58586be74a34a82ad83390ebf915242~mv2.png";
+
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "Solution", path: "/solution" },
+  { label: "News", path: "/news" },
+  { label: "Team", path: "/team" },
+  { label: "Contact", path: "/contact" },
 ];
 
 interface NavbarProps {
-  logoUrl?: string;
+  config?: Record<string, Record<string, unknown>>;
 }
 
-export function Navbar({ logoUrl }: NavbarProps) {
+export function Navbar({ config }: NavbarProps) {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const logoUrl = (config?.logos as { dark?: string } | undefined)?.dark || LOGO_DARK;
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (path: string) =>
+    path === "/" ? pathname === "/" : pathname.startsWith(path);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          {logoUrl ? (
-            <Image
-              src={logoUrl}
-              alt="RetiSpec"
-              width={160}
-              height={40}
-              className="h-8 w-auto"
-              priority
-            />
-          ) : (
-            <span className="text-xl font-bold font-heading text-heading">
-              RetiSpec
-            </span>
-          )}
+    <nav className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled
+        ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
+        : "bg-white/80 backdrop-blur-md"
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
+        <Link href="/" className="flex items-center shrink-0">
+          <Image
+            src={logoUrl}
+            alt="RetiSpec"
+            width={160}
+            height={32}
+            className="h-7 md:h-8 w-auto"
+            priority
+          />
         </Link>
 
-        {/* Desktop navigation */}
-        <div className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                isActive(link.href)
-                  ? "bg-primary/10 text-primary"
-                  : "text-body hover:bg-surface hover:text-heading"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Desktop nav - centered */}
+        <div className="hidden md:flex items-center gap-0.5">
+          {navLinks.map((link) => {
+            const active = isActive(link.path);
+            return (
+              <Link
+                key={link.path}
+                href={link.path}
+                className={`relative px-4 py-2.5 rounded-lg transition-all ${
+                  active
+                    ? "text-[#0369A1]"
+                    : "text-[#475569] hover:text-[#0A1628]"
+                }`}
+                style={{ fontSize: "14px", fontWeight: active ? 600 : 450, letterSpacing: "-0.01em" }}
+              >
+                {link.label}
+                {active && (
+                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#0369A1] rounded-full" />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Desktop CTA */}
-        <Link
-          href="/contact"
-          className="hidden rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover md:block"
-        >
-          Get in Touch
-        </Link>
+        {/* Get in Touch button */}
+        <div className="hidden md:flex items-center">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#0369A1] text-white hover:bg-[#024E7A] transition-all"
+            style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.01em" }}
+          >
+            Get in Touch <ArrowRight size={14} />
+          </Link>
+        </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile menu button */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-lg p-2 text-heading hover:bg-surface md:hidden"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden p-2 rounded-lg hover:bg-[#F1F5F9] text-[#475569]"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-      </nav>
+      </div>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="border-t border-border bg-white px-6 pb-6 md:hidden">
-          <div className="flex flex-col gap-1 pt-4">
-            {NAV_LINKS.map((link) => (
+      {/* Mobile nav */}
+      {mobileOpen && (
+        <div className="md:hidden overflow-hidden bg-white border-t border-[#F1F5F9]">
+          <div className="px-6 py-4 flex flex-col gap-1">
+            {navLinks.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
-                className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
-                  isActive(link.href)
-                    ? "bg-primary/10 text-primary"
-                    : "text-body hover:bg-surface"
+                key={link.path}
+                href={link.path}
+                className={`px-4 py-3 rounded-lg transition-all ${
+                  isActive(link.path)
+                    ? "bg-[#F0F7FF] text-[#0369A1]"
+                    : "text-[#475569] hover:text-[#0A1628] hover:bg-[#F8FAFC]"
                 }`}
+                style={{ fontSize: "15px", fontWeight: isActive(link.path) ? 600 : 450 }}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="mt-2 rounded-lg bg-primary px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
-            >
-              Get in Touch
-            </Link>
           </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }

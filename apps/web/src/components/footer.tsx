@@ -2,171 +2,114 @@ import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 
+const LOGO_LIGHT = "https://static.wixstatic.com/media/efca5f_1765e225e13b400eb02c4c49c2f2f95f~mv2.png";
+
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "Solution", path: "/solution" },
+  { label: "News", path: "/news" },
+  { label: "Team", path: "/team" },
+  { label: "Contact", path: "/contact" },
+  { label: "Careers", path: "/careers" },
+];
+
 interface FooterProps {
-  config: {
-    logos?: { dark?: string; light?: string };
-    social?: { linkedin?: string; twitter?: string; instagram?: string };
-    contact?: { email?: string; location?: string; country?: string };
-    footer?: { description?: string; disclaimer?: string };
-  };
+  config: Record<string, Record<string, unknown>>;
 }
 
-const COMPANY_LINKS = [
-  { href: "/solution", label: "Solution" },
-  { href: "/team", label: "Team" },
-  { href: "/careers", label: "Careers" },
-  { href: "/news", label: "News" },
-  { href: "/contact", label: "Contact" },
-];
-
-const RESOURCE_LINKS = [
-  { href: "/privacy-policy", label: "Privacy Policy" },
-];
-
 export function Footer({ config }: FooterProps) {
-  const darkLogo = config.logos?.dark;
-  const social = config.social;
-  const contact = config.contact;
-  const footer = config.footer;
-  const year = new Date().getFullYear();
+  const logoUrl = (config.logos as { light?: string } | undefined)?.light || LOGO_LIGHT;
+  const social = config.social as { linkedin?: string; twitter?: string; instagram?: string } | undefined;
+  const contact = config.contact as { email?: string; location?: string; country?: string } | undefined;
+  const footer = config.footer as { description?: string; disclaimer?: string } | undefined;
 
   return (
-    <footer className="bg-navy text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-[#0A1628]">
+      <div className="max-w-7xl mx-auto px-6 pt-20 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            {darkLogo ? (
-              <Image
-                src={darkLogo}
-                alt="RetiSpec"
-                width={160}
-                height={40}
-                className="mb-4 h-8 w-auto brightness-0 invert"
-              />
-            ) : (
-              <span className="mb-4 block text-xl font-bold font-heading">
-                RetiSpec
-              </span>
-            )}
-            {footer?.description && (
-              <p className="text-sm leading-relaxed text-light">
-                {footer.description}
-              </p>
-            )}
-            {social && (
-              <div className="mt-6 flex gap-3">
-                {social.linkedin && (
-                  <a
-                    href={social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                )}
-                {social.twitter && (
-                  <a
-                    href={social.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                )}
-                {social.instagram && (
-                  <a
-                    href={social.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="h-5 w-5" />
-                  </a>
-                )}
-              </div>
-            )}
+          <div className="md:col-span-5">
+            <Image
+              src={logoUrl}
+              alt="RetiSpec"
+              width={160}
+              height={28}
+              className="h-7 w-auto mb-6"
+            />
+            <p className="text-[#7C8DA5] max-w-sm" style={{ fontSize: "14px", lineHeight: 1.8 }}>
+              {footer?.description || "AI-driven early detection of Alzheimer's disease through a simple, non-invasive eye exam. Accessible, affordable, and scalable retinal imaging technology."}
+            </p>
+            <div className="flex gap-3 mt-8">
+              <a
+                href={social?.linkedin || "https://www.linkedin.com/company/retispec/"}
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center text-[#7C8DA5] hover:text-white hover:bg-[#0369A1] hover:border-[#0369A1] transition-all"
+              >
+                <Linkedin size={15} />
+              </a>
+              <a
+                href={social?.twitter || "https://twitter.com/RetiSpec"}
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center text-[#7C8DA5] hover:text-white hover:bg-[#0369A1] hover:border-[#0369A1] transition-all"
+              >
+                <Twitter size={15} />
+              </a>
+              <a
+                href={social?.instagram || "https://www.instagram.com/retispec/"}
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center text-[#7C8DA5] hover:text-white hover:bg-[#0369A1] hover:border-[#0369A1] transition-all"
+              >
+                <Instagram size={15} />
+              </a>
+            </div>
           </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-light">
-              Company
-            </h3>
-            <ul className="space-y-3">
-              {COMPANY_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+          {/* Company Links */}
+          <div className="md:col-span-3">
+            <h4 className="text-white/50 mb-5" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Company</h4>
+            <div className="flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <Link key={link.path} href={link.path} className="text-[#7C8DA5] hover:text-white transition-colors" style={{ fontSize: "14px" }}>
+                  {link.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Resources */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-light">
-              Resources
-            </h3>
-            <ul className="space-y-3">
-              {RESOURCE_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="md:col-span-2">
+            <h4 className="text-white/50 mb-5" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Resources</h4>
+            <div className="flex flex-col gap-3">
+              <Link href="/solution" className="text-[#7C8DA5] hover:text-white transition-colors" style={{ fontSize: "14px" }}>Publications</Link>
+              <Link href="/news" className="text-[#7C8DA5] hover:text-white transition-colors" style={{ fontSize: "14px" }}>Media</Link>
+              <Link href="/privacy-policy" className="text-[#7C8DA5] hover:text-white transition-colors" style={{ fontSize: "14px" }}>Privacy Policy</Link>
+            </div>
           </div>
 
           {/* Contact */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-light">
-              Contact
-            </h3>
-            <ul className="space-y-3 text-sm text-gray-300">
-              {contact?.email && (
-                <li>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="transition-colors hover:text-white"
-                  >
-                    {contact.email}
-                  </a>
-                </li>
-              )}
-              {contact?.location && (
-                <li>
-                  {contact.location}
-                  {contact.country ? `, ${contact.country}` : ""}
-                </li>
-              )}
-            </ul>
+          <div className="md:col-span-2">
+            <h4 className="text-white/50 mb-5" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Contact</h4>
+            <div className="flex flex-col gap-3 text-[#7C8DA5]" style={{ fontSize: "14px" }}>
+              <p>{contact?.location || "Toronto, ON"}</p>
+              <p>{contact?.country || "Canada"}</p>
+              <a href={`mailto:${contact?.email || "hello@retispec.com"}`} className="hover:text-white transition-colors">
+                {contact?.email || "hello@retispec.com"}
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 border-t border-white/10 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-xs text-light">
-              &copy; {year} RetiSpec Inc. All rights reserved.
-            </p>
-            {footer?.disclaimer && (
-              <p className="text-xs text-light">{footer.disclaimer}</p>
-            )}
-          </div>
+        <div className="border-t border-white/[0.08] mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[#4A5B73]" style={{ fontSize: "12px" }}>
+            &copy; {new Date().getFullYear()} RetiSpec Inc. All rights reserved.
+          </p>
+          <p className="text-[#4A5B73]" style={{ fontSize: "12px" }}>
+            {footer?.disclaimer || "Technology is currently for research use only"}
+          </p>
         </div>
       </div>
     </footer>

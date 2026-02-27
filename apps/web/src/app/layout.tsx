@@ -43,13 +43,15 @@ export default async function RootLayout({
     // CMS may be unavailable — render with defaults
   }
 
-  const logoUrl = (config.logos as { light?: string } | undefined)?.light;
-
   return (
     <html lang="en">
       <body className="min-h-screen bg-background text-foreground antialiased">
-        <Navbar logoUrl={logoUrl} />
-        <main className="min-h-screen">{children}</main>
+        {/* Top accent line */}
+        <div className="h-[3px] bg-gradient-to-r from-[#0369A1] via-[#0EA5E9] to-[#06B6D4] fixed top-0 left-0 right-0 z-[60]" />
+        <Navbar config={config} />
+        <main className="flex-1" style={{ paddingTop: "75px" }}>
+          {children}
+        </main>
         <Footer config={config} />
       </body>
     </html>
