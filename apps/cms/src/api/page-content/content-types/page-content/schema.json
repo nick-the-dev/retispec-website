@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "page_contents",
+  "info": {
+    "singularName": "page-content",
+    "pluralName": "page-contents",
+    "displayName": "Page Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "pageSlug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroBadge": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "text"
+    },
+    "sections": {
+      "type": "json"
+    }
+  }
+}

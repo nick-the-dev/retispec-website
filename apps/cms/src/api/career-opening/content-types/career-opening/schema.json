@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "career_openings",
+  "info": {
+    "singularName": "career-opening",
+    "pluralName": "career-openings",
+    "displayName": "Career Opening"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "applyLink": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_items",
+  "info": {
+    "singularName": "news-item",
+    "pluralName": "news-items",
+    "displayName": "News Item"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "source": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "isHighlight": {
+      "type": "boolean",
+      "default": false
+    },
+    "isVideo": {
+      "type": "boolean",
+      "default": false
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
