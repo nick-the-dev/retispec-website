@@ -104,7 +104,7 @@ export default async function HomePage() {
                 ) : (
                   <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(3,105,161,0.15)]">
                     <Image
-                      src="https://static.wixstatic.com/media/9fe62d_d209ee1655304d0b83569d7a8693af15~mv2.jpg"
+                      src="https://aberdeeneyes.co.uk/wp-content/uploads/2018/01/eyelid.jpg"
                       alt="Human eye — the window to early Alzheimer's detection"
                       width={580}
                       height={399}
@@ -212,7 +212,7 @@ export default async function HomePage() {
                     {Array.isArray(s.missionImages) && (s.missionImages as string[])[0] ? (
                       <Image src={(s.missionImages as string[])[0]!} alt="Retinal fundus imaging" width={600} height={800} className="w-full aspect-[3/4] object-cover" />
                     ) : (
-                      <Image src="https://static.wixstatic.com/media/9fe62d_fed15a8756d4467cb6eb625a436b9409~mv2.jpg" alt="Retinal fundus imaging" width={600} height={800} className="w-full aspect-[3/4] object-cover" />
+                      <Image src="https://images.unsplash.com/photo-1688128320158-5099ab881b12?w=1080" alt="Retinal fundus imaging" width={600} height={800} className="w-full aspect-[3/4] object-cover" />
                     )}
                   </div>
                 </div>
@@ -221,14 +221,14 @@ export default async function HomePage() {
                     {Array.isArray(s.missionImages) && (s.missionImages as string[])[1] ? (
                       <Image src={(s.missionImages as string[])[1]!} alt="Eye iris macro detail" width={400} height={400} className="w-full aspect-square object-cover" />
                     ) : (
-                      <Image src="https://static.wixstatic.com/media/9fe62d_d209ee1655304d0b83569d7a8693af15~mv2.jpg" alt="Eye exam screening" width={400} height={400} className="w-full aspect-square object-cover" />
+                      <Image src="https://images.unsplash.com/photo-1764773963967-eb84577cfc1d?w=1080" alt="Eye iris macro detail" width={400} height={400} className="w-full aspect-square object-cover" />
                     )}
                   </div>
                   <div className="rounded-2xl overflow-hidden">
                     {Array.isArray(s.missionImages) && (s.missionImages as string[])[2] ? (
                       <Image src={(s.missionImages as string[])[2]!} alt="Clinical research laboratory" width={400} height={533} className="w-full aspect-[3/4] object-cover" />
                     ) : (
-                      <Image src="https://static.wixstatic.com/media/9fe62d_1e1d28d1f34f4b22bfb999aa8717e654~mv2.jpg" alt="AI-powered retinal analysis" width={400} height={533} className="w-full aspect-[3/4] object-cover" />
+                      <Image src="https://images.unsplash.com/photo-1768498950637-88d073faa491?w=1080" alt="Clinical research laboratory" width={400} height={533} className="w-full aspect-[3/4] object-cover" />
                     )}
                   </div>
                 </div>
@@ -369,7 +369,7 @@ export default async function HomePage() {
         <div className="grid md:grid-cols-2">
           <div className="relative h-[400px] md:h-auto">
             <Image
-              src={typeof s.impactImage === "string" ? (s.impactImage as string) : "https://static.wixstatic.com/media/9fe62d_38288f35e00344e3a0d968eb5059d95e~mv2.jpg"}
+              src={typeof s.impactImage === "string" ? (s.impactImage as string) : "https://images.unsplash.com/photo-1544187702-067d81860901?w=1080"}
               alt="Compassionate patient care"
               fill
               className="object-cover"
