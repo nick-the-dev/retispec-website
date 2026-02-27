@@ -7,7 +7,7 @@ interface HeroSectionProps {
 export function HeroSection({ badge, title, subtitle }: HeroSectionProps) {
   return (
     <section
-      className="relative px-6 pt-14 md:pt-20 pb-16 md:pb-20 overflow-hidden"
+      className="relative pt-14 md:pt-20 pb-16 md:pb-20 overflow-hidden"
       style={{ background: "linear-gradient(170deg, #E4EEF7 0%, #EDF3FA 50%, #F6F9FC 100%)" }}
     >
       {/* Decorative elements */}
@@ -15,7 +15,7 @@ export function HeroSection({ badge, title, subtitle }: HeroSectionProps) {
       <div className="absolute bottom-0 left-1/2 w-[300px] h-[200px] rounded-full bg-[#0EA5E9]/[0.03] blur-[60px]" />
       <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-gradient-to-b from-[#0369A1]/20 via-[#0EA5E9]/10 to-transparent" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="max-w-2xl">
           {badge && (
             <div className="flex items-center gap-2.5 mb-5">

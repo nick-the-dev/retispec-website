@@ -57,8 +57,8 @@ export default async function ContactPage() {
 
       {/* Audience Cards */}
       {audienceCards.length > 0 && (
-        <section className="py-12 px-6">
-          <div className="mx-auto max-w-7xl">
+        <section className="py-12">
+          <div className="mx-auto max-w-7xl px-6">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {audienceCards.map((card, i) => {
                 const Icon = AUDIENCE_ICONS[card.icon] ?? Building2;
@@ -91,8 +91,8 @@ export default async function ContactPage() {
       )}
 
       {/* Contact Form + Info */}
-      <section className="py-16 md:py-24 px-6">
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-5">
+      <section className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl px-6 gap-12 md:grid-cols-5">
           {/* Left: Contact Info */}
           <div className="md:col-span-2 space-y-8">
             <div>

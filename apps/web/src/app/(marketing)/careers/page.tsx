@@ -54,8 +54,8 @@ export default async function CareersPage() {
 
       {/* ── Perks ── */}
       {perks.length > 0 && (
-        <section className="py-16 md:py-24 px-6">
-          <div className="mx-auto max-w-7xl">
+        <section className="py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-6">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8EDF2] rounded-2xl overflow-hidden">
               {perks.map((perk, i) => {
                 const Icon = PERK_ICONS[perk.icon] ?? Heart;
@@ -90,13 +90,13 @@ export default async function CareersPage() {
       {/* ── Employee Testimonial ── */}
       {testimonial && (
         <section
-          className="py-16 px-6"
+          className="py-16"
           style={{
             background:
               "linear-gradient(170deg, #EDF3FA 0%, #F6F9FC 50%, #FAFCFE 100%)",
           }}
         >
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto max-w-4xl px-6">
             <div className="rounded-2xl border border-[#E8EDF2] bg-white p-8 md:p-12 shadow-sm">
               <div className="flex flex-col items-start gap-6 md:flex-row md:gap-10">
                 {testimonial.photo && (
@@ -138,8 +138,8 @@ export default async function CareersPage() {
       )}
 
       {/* ── Current Openings ── */}
-      <section className="py-24 px-6">
-        <div className="mx-auto max-w-4xl">
+      <section className="py-24">
+        <div className="mx-auto max-w-4xl px-6">
           <h2
             className="mb-10 text-[#0A1628]"
             style={{

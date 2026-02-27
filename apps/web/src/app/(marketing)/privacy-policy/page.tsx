@@ -62,8 +62,8 @@ export default async function PrivacyPolicyPage() {
         }
       />
 
-      <section className="py-16 md:py-24 px-6">
-        <div className="mx-auto max-w-3xl space-y-8">
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6 space-y-8">
           {/* Intro paragraph */}
           <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5B73" }}>
             At RetiSpec, we are committed to protecting the privacy and security

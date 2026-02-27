@@ -46,8 +46,8 @@ export default async function NewsPage() {
 
       {/* Highlights */}
       {highlights.length > 0 && (
-        <section className="py-16 px-6">
-          <div className="mx-auto max-w-7xl">
+        <section className="py-16">
+          <div className="mx-auto max-w-7xl px-6">
             <h2
               className="mb-8 font-heading text-[#0A1628]"
               style={{ fontSize: "18px", fontWeight: 700 }}
@@ -106,12 +106,12 @@ export default async function NewsPage() {
       {/* All Coverage */}
       {allNews.length > 0 && (
         <section
-          className="py-16 px-6"
+          className="py-16"
           style={{
             background: "linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%)",
           }}
         >
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl px-6">
             <h2
               className="mb-8 font-heading text-[#0A1628]"
               style={{ fontSize: "18px", fontWeight: 700 }}
