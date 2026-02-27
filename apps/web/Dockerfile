@@ -13,12 +13,11 @@ RUN bun install --frozen-lockfile
 FROM oven/bun:1.3.9-alpine AS builder
 WORKDIR /app
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/ ./
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV PATH="/app/node_modules/.bin:$PATH"
-RUN cd apps/web && next build
+RUN cd apps/web && /app/node_modules/.bin/next build
 
 # ---
 FROM node:22-alpine AS runner
