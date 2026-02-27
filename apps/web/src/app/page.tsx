@@ -60,7 +60,7 @@ export default async function HomePage() {
                 className="text-[#0A1628] mb-5"
                 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3.25rem)", fontWeight: 700, lineHeight: 1.12, letterSpacing: "-0.02em" }}
               >
-                {page?.heroTitle ?? "A revolutionary, non-invasive way to detect Alzheimer's disease early"}
+                {page?.heroTitle ?? "A revolutionary, non-invasive way to detect Alzheimer\u2019s disease early"}
               </h1>
 
               {page?.heroSubtitle && (
@@ -145,18 +145,19 @@ export default async function HomePage() {
 
       {/* Featured In */}
       {logos.data.length > 0 && (
-        <section className="py-10 md:py-12 px-6 border-y border-[#E8EDF2] bg-[#FAFCFE]">
-          <div className="max-w-5xl mx-auto">
+        <section className="py-10 md:py-14 border-y border-[#E8EDF2] bg-[#FAFCFE]">
+          <div className="max-w-7xl mx-auto px-6">
             <p className="text-center text-[#94A3B8] mb-8" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Featured in</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 md:gap-x-14">
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-16">
               {logos.data.map((item) => (
-                <div key={item.id} className="flex items-center gap-2.5 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default">
-                  {item.logoUrl && (
-                    <Image src={item.logoUrl} alt={item.name} width={24} height={24} className="h-6 w-6 rounded object-contain" />
+                <div key={item.id} className="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default">
+                  {item.logoUrl ? (
+                    <Image src={item.logoUrl} alt={item.name} width={120} height={32} className="h-6 md:h-7 w-auto object-contain" unoptimized />
+                  ) : (
+                    <span className="text-[#475569]" style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
+                      {item.name}
+                    </span>
                   )}
-                  <span className="text-[#475569]" style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
-                    {item.name}
-                  </span>
                 </div>
               ))}
             </div>
@@ -165,8 +166,8 @@ export default async function HomePage() {
       )}
 
       {/* Mission Section */}
-      <section className="py-24 md:py-32 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-16 items-center">
             <div className="md:col-span-5">
               <p className="text-[#0369A1] mb-4" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
@@ -176,7 +177,7 @@ export default async function HomePage() {
                 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.02em" }}
                 className="mb-6 text-[#0A1628]"
               >
-                {(s.missionTitle as string) ?? "A better future for Alzheimer's starts with the ability to diagnose it"}
+                {(s.missionTitle as string) ?? "A better future for Alzheimer\u2019s starts with the ability to diagnose it"}
               </h2>
               <div className="space-y-4">
                 {typeof s.missionText === "string" ? (
@@ -238,8 +239,8 @@ export default async function HomePage() {
 
       {/* Product Pillars */}
       {pillars.length > 0 && (
-        <section className="py-20 md:py-28 px-6" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%)" }}>
-          <div className="max-w-7xl mx-auto">
+        <section className="py-20 md:py-28" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%)" }}>
+          <div className="max-w-7xl mx-auto px-6">
             <div className="max-w-xl mb-14">
               <p className="text-[#0369A1] mb-4" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
                 Why It Matters
@@ -252,16 +253,24 @@ export default async function HomePage() {
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8EDF2] rounded-2xl overflow-hidden">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {pillars.map((p) => {
                 const Icon = ICON_MAP[p.icon] ?? Eye;
                 return (
-                  <div key={p.title} className="bg-white p-8 hover:bg-[#F8FBFF] transition-colors">
-                    <div className="w-11 h-11 rounded-lg bg-[#F0F7FF] flex items-center justify-center mb-5">
-                      <Icon size={20} className="text-[#0369A1]" />
+                  <div key={p.title} className="group relative bg-white rounded-2xl p-7 border border-[#E8EDF2] hover:border-[#0369A1]/20 hover:shadow-[0_8px_30px_rgba(3,105,161,0.08)] transition-all duration-300">
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-6 right-6 h-[2px] rounded-b-full bg-gradient-to-r from-transparent via-[#0369A1]/20 to-transparent group-hover:via-[#0369A1]/50 transition-all duration-300" />
+
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#E8F4FD] via-[#F0F7FF] to-[#E0EFFA] group-hover:from-[#D4ECFA] group-hover:to-[#C8E4F6] flex items-center justify-center mb-6 transition-all duration-300">
+                      <Icon size={22} className="text-[#0369A1] group-hover:scale-110 transition-transform duration-300" />
                     </div>
-                    <h3 className="text-[#0A1628] mb-2.5" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "16px", fontWeight: 600 }}>{p.title}</h3>
+                    <h3 className="text-[#0A1628] mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "16px", fontWeight: 600 }}>{p.title}</h3>
                     <p className="text-[#4A5B73]" style={{ fontSize: "13.5px", lineHeight: 1.7 }}>{p.desc}</p>
+
+                    {/* Decorative corner accent */}
+                    <div className="absolute bottom-4 right-4 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end">
+                      <div className="w-8 h-8 rounded-tl-xl border-t border-l border-[#0369A1]/10" />
+                    </div>
                   </div>
                 );
               })}
@@ -272,8 +281,8 @@ export default async function HomePage() {
 
       {/* How It Works Preview */}
       {steps.length > 0 && (
-        <section className="py-24 md:py-32 px-6">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14">
               <div>
                 <p className="text-[#0369A1] mb-4" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
@@ -389,8 +398,8 @@ export default async function HomePage() {
 
       {/* Testimonials */}
       {testimonials.data.length > 0 && (
-        <section className="py-24 md:py-32 px-6">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 md:py-32">
+          <div className="max-w-7xl mx-auto px-6">
             <div className="max-w-xl mb-14">
               <p className="text-[#0369A1] mb-4" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
                 Testimonials
@@ -433,8 +442,8 @@ export default async function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="py-24 md:py-32">
+        <div className="max-w-3xl mx-auto px-6 text-center">
           <h2
             className="text-[#0A1628] mb-5"
             style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.02em" }}
@@ -444,7 +453,7 @@ export default async function HomePage() {
           <p className="text-[#4A5B73] mb-10 max-w-xl mx-auto" style={{ fontSize: "16px", lineHeight: 1.75 }}>
             {typeof s.ctaText === "string"
               ? (s.ctaText as string)
-              : "Whether you're a clinician, researcher, or simply curious about the future of Alzheimer's detection, we'd love to connect."}
+              : "Whether you\u2019re a clinician, researcher, or simply curious about the future of Alzheimer\u2019s detection, we\u2019d love to connect."}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
