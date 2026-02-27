@@ -61,14 +61,14 @@ export default async function TeamPage() {
             <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
               {teamMembers.data.map((member) => (
                 <div key={member.id} className="text-center">
-                  <div className="mx-auto mb-4 aspect-[3/4] w-[120px] overflow-hidden rounded-2xl bg-[#F1F5F9] md:w-[160px]">
+                  <div className="mx-auto mb-4 aspect-[3/4] w-[140px] overflow-hidden rounded-2xl bg-[#EDF2F7] md:w-[170px]">
                     {member.photoUrl ? (
                       <Image
                         src={member.photoUrl}
                         alt={member.name}
-                        width={160}
-                        height={213}
-                        className="h-full w-full object-cover object-top"
+                        width={170}
+                        height={227}
+                        className="h-full w-full object-contain object-bottom"
                       />
                     ) : (
                       <div
