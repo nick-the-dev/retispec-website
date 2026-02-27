@@ -10,14 +10,14 @@ COPY packages/eslint-config/package.json ./packages/eslint-config/package.json
 RUN bun install --frozen-lockfile
 
 # ---
-FROM oven/bun:1.3.9-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY --from=deps /app/ ./
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN cd apps/web && /app/node_modules/.bin/next build
+RUN cd apps/web && npx next build
 
 # ---
 FROM node:22-alpine AS runner
