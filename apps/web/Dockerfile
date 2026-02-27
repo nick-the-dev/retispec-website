@@ -19,6 +19,13 @@ COPY --from=deps /app/ ./
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
+
+# Strapi URL needed during next build for pre-rendering pages
+ARG STRAPI_URL
+ARG STRAPI_API_TOKEN
+ENV STRAPI_URL=${STRAPI_URL}
+ENV STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+
 RUN cd apps/web && npx next build
 
 # ---
