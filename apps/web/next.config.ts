@@ -3,6 +3,11 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  typescript: {
+    // Type checking is done in CI; bun's .bun/ type resolution
+    // isn't compatible with the node:22-alpine builder stage
+    ignoreBuildErrors: true,
+  },
   outputFileTracingRoot: path.join(__dirname, "../../"),
   turbopack: {
     root: path.join(__dirname, "../../"),
