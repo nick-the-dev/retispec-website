@@ -215,13 +215,10 @@ export default async function SolutionPage() {
                     : pub.year ?? null;
 
                 const card = (
-                  <div className="group flex items-start gap-4 rounded-xl border border-[#E2E8F0] bg-white p-5 transition-all hover:border-[#0369A1]/25 hover:shadow-md">
+                  <div className="group rounded-xl border border-[#E2E8F0] bg-white p-5 transition-all hover:border-[#0369A1]/25 hover:shadow-md">
                     {/* Date badge */}
                     {dateLabel && (
-                      <div
-                        className="flex shrink-0 items-center justify-center rounded-md bg-[#F1F5F9] px-2.5 py-1"
-                        style={{ minWidth: "120px" }}
-                      >
+                      <div className="mb-3 inline-flex items-center rounded-md bg-[#F1F5F9] px-2.5 py-1">
                         <span
                           className="text-[#4A5B73]"
                           style={{
@@ -234,41 +231,43 @@ export default async function SolutionPage() {
                       </div>
                     )}
 
-                    {/* Icon */}
-                    <div className="mt-0.5 shrink-0">
-                      <FileText className="h-5 w-5 text-[#0369A1]" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="min-w-0 flex-1">
-                      <h3
-                        className="text-[#0A1628]"
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {pub.title}
-                      </h3>
-                      <p
-                        className="mt-1 text-[#64748B]"
-                        style={{
-                          fontSize: "13px",
-                          fontWeight: 400,
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {pub.authors}
-                      </p>
-                    </div>
-
-                    {/* External link icon */}
-                    {pub.link && (
+                    <div className="flex items-start gap-3">
+                      {/* Icon */}
                       <div className="mt-0.5 shrink-0">
-                        <ExternalLink className="h-4 w-4 text-[#94A3B8] transition-colors group-hover:text-[#0369A1]" />
+                        <FileText className="h-5 w-5 text-[#0369A1]" />
                       </div>
-                    )}
+
+                      {/* Content */}
+                      <div className="min-w-0 flex-1">
+                        <h3
+                          className="text-[#0A1628]"
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: 600,
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {pub.title}
+                        </h3>
+                        <p
+                          className="mt-1 text-[#64748B]"
+                          style={{
+                            fontSize: "13px",
+                            fontWeight: 400,
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {pub.authors}
+                        </p>
+                      </div>
+
+                      {/* External link icon */}
+                      {pub.link && (
+                        <div className="mt-0.5 shrink-0">
+                          <ExternalLink className="h-4 w-4 text-[#94A3B8] transition-colors group-hover:text-[#0369A1]" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
 
